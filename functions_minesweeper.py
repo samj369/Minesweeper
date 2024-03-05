@@ -23,7 +23,7 @@ def display_board(board):
         for column in range(5):
             square = board[row][column]
             if square == "X":
-                board_copy[row][column] = "O" # in the corresponding square of the cpy board display O not X
+                board_copy[row][column] = "X" # in the corresponding square of the cpy board display O not X
             else:
                 adjacent_mines = count_adjacent_mines(board, row, column)
                 if adjacent_mines == 0:
