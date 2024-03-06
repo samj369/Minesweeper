@@ -9,9 +9,8 @@ def insert_mines(board, positions):
         board[board_index] = "X" # insert X where the mines are located in the original board
 
 
-
 def display_board(board):
-    board_copy = board[:]   #
+    board_copy = board[:]
     for row in range(5):
         for column in range(5):
             cell = board[row * 5 + column]
@@ -45,16 +44,25 @@ def count_adjacent_mines(board, row, column):
 
 def play_turn(board, row, column):
     board_copy = board[:]
+    mine_selected = False
     if board[row * 5 + column] == "X":      # if cell contains a mine in initial board
         board_copy[row * 5 + column] = "#" # update board copy
+        mine_selected = True
+        #print ("True")
     else:
         adjacent_mines = count_adjacent_mines(board, row, column)
         if adjacent_mines == 0:      # if cell is O in initial board
             board_copy[row * 5 + column] = " "  # update cell in copy board to blank space
         else:
             board_copy[row * 5 + column] = str(adjacent_mines) # cell must be adjacent to a mine, so display how many mines
+    return mine_selected
 
-
+def check_win(board)
+    board_copy = board[:]
+    if cell == "O":
+        return False
+    return True
+print(check_win(board))                 #does NOT WORJ BOTH THE FUNCTIONS DONT WORK an di im tired
 
 #???
 positions = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4]]
