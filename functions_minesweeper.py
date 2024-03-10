@@ -37,7 +37,7 @@ def display_board(board):
 
 def count_adjacent_mines(board, row, column):
     count = 0
-    for row, column in [(row - 1, column), (row + 1, column), (row, column - 1), (row, column + 1)]: # check above, below, left and right for each square
+    for row, column in [(row - 1, column), (row + 1, column), (row, column - 1), (row, column + 1), (row - 1, column - 1), (row - 1, column + 1), (row + 1, column + 1), (row + 1, column - 1)]:
         if 0 <= row < 5 and 0 <= column < 5 and board[row * 5 + column] == "X": # check if within bounds of the 5x5 board and a mine is detected
             count += 1
     return count
@@ -62,8 +62,9 @@ def check_win(board):
     if cell == "O":
         print("False") # testing..
         return False
-    print("True") # testing
-    return True
+    else:
+        print("True") # testing
+        return True
 #print(check_win(board))
 
 #???
