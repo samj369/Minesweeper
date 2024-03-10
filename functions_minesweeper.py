@@ -57,12 +57,14 @@ def play_turn(board, row, column):
             board_copy[row * 5 + column] = str(adjacent_mines) # cell must be adjacent to a mine, so display how many mines
     return mine_selected
 
-def check_win(board)
+def check_win(board):
     board_copy = board[:]
     if cell == "O":
+        print("False") # testing..
         return False
+    print("True") # testing
     return True
-print(check_win(board))                 #does NOT WORJ BOTH THE FUNCTIONS DONT WORK an di im tired
+#print(check_win(board))
 
 #???
 positions = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4]]
