@@ -1,11 +1,12 @@
 import pytest
 from functions_minesweeper import *
 def test_count_adjacent_mines_in_corner():
-    board = ['X','O','O','O','O'
+    board = ['X','O','O','O','O',
              'O','O','O','O','O',
              'O','O','O','O','O',
              'O','O','O','O','O',
-             'O','O','O','O','O',]
+             'O','O','O','O','O',
+             ]
 
 count = count_adjacent_mines(board,0,4)
 assert(count == 0)
@@ -20,3 +21,18 @@ def test_insert_mines():
                      'O','O','X','O','O',
                      'O','O','O','O','O',
                      ]
+
+def test_count_adjacent_mines():
+    board = ['O', 'O', 'O', 'O', 'O',
+             'O', 'X', 'X', 'X', 'O',
+             'O', 'X', 'O', 'X', 'O',
+             'O', 'X', 'X', 'X', 'O',
+             'O', 'O', 'O', 'O', 'O',
+             ]
+    assert count_adjacent_mines(board,0,1) == 2
+    assert count_adjacent_mines(board,2,2) == 8
+    assert count_adjacent_mines(board, 4, 4) == 1
+    assert count_adjacent_mines(board, 2, 4) == 3
+
+
+
