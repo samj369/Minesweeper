@@ -152,17 +152,21 @@ def play_game(positions):
         try:
             user_input = input("Enter row and column (0-4) eg 2 3: ")
             row, column = map(int, user_input.split())
+            # check if input is within bounds of board
             if not (0 <= row < 5 and 0 <= column < 5):
                 print("Invalid input,try again")
                 continue
             board, hit_mine = play_turn(board, row, column)
             display_board(board)
+            # if mine hit, instantly game over
             if hit_mine:
                 print("BOOM! Game Over!")
                 game_over = True
+            # check if all 'O' have been selected
             elif check_win(board):
                 print("YOU WIN!")
                 game_over = True
+        # user input invalid
         except ValueError:
             print("Invalid input, try again")
 
