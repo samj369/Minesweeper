@@ -71,27 +71,62 @@ def insert_mines(board, positions):
     Arguments:
         board(list): a list with 25 cells representing the board.
         positions(list of lists): a list of positions (row,col) specifying where to insert mines.
+    Returns:
+        board(list): the updated board with mines inserted.
+    Notes:
+        (precondition 1) mine positions are given as row, col.
+        (postcondition 1) checks every cell
     """
     for position in positions:
         row, column = position
         board_index = 5 * row + column
-        # insert X where mines are located in the original board
+        # insert 'X' where mines are located in the original board
         board[board_index] = "X"
 
 def play_turn(board, row, column):
+    """
+    Plays a turn and replaces the 'O's with either ' ', '#' or how many adjacent mines
+    as the player selects cells.
+
+    Arguments:
+        board(list): a list with 25 cells representing the board.
+        row(int): the row index of the cell that is selected.
+        column(int): the column index of the cell that is selected.
+    Returns:
+        board(list): the updated board with cells revealed
+        (bool): True if mine selected, False otherwise
+    Notes:
+        (precondition 1): mine positions are given as row, col
+        (postcondition 1): if selected cell is 'X' it is replaced with '#' and returns True
+        (postcondition 2) if selected cell is 'O' it is replaced with '', returns False
+        (postcondition 3) if selected cell has adjacent mines, update with number of adjacent mines
+    """
     if board[row * 5 + column] == "X":
-        board[row * 5 + column] = "#"  # reveal hidden mine to #
+        # reveal hidden mine
+        board[row * 5 + column] = "#"
         return board, True
     else:
         adjacent_mines = count_adjacent_mines(board, row, column)
+        # reveal blank space
         if adjacent_mines == 0:
-            board[row * 5 + column] = " "  # reveal space for 01blank cell
+            board[row * 5 + column] = " "
 
         else:
+            # reveal number of adjacent mines
             board[row * 5 + column] = str(adjacent_mines)  # reveal number of adjacent mines
         return board, False
 
 def check_win(board):
+    """
+    Checks if the game is over.
+
+    Arguments:
+        board(list): a list with 25 cells representing the board.
+    Returns:
+        (bool): True if the game is won, False otherwise.
+    Notes:
+        (postcondition 1): check if every "0" cell in board is selected, returns True ie game is won
+    """
     for cell in board:
         if cell == "O":
             return False
@@ -99,9 +134,18 @@ def check_win(board):
 display_board(board)
 
 def play_game(positions):
+    """
+    Plays the game and prompts user to give valid inputs.
+
+    Arguments:
+        positions(list of lists): a list of lists representing the positions of the mines.
+    Notes:
+        (precondition 1): mines are inserted at specified positions
+        (precondition 2): user input is valid
+        (postcondition 1): games continues until player hits a mine or reveals all cells without mines.
+    """
     board = initialise_board()
     insert_mines(board, positions)
-
 
     game_over = False
     while not game_over:
