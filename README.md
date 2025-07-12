@@ -10,6 +10,7 @@ Game Features:
 - Unit tests with pytest
 
 Playing the Game:
+
 To use specific board configurations, you can define mine positions directly in play_minesweeper.py
 
 Rules:
